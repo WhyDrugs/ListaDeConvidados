@@ -40,11 +40,33 @@
         ]
 
         function listarConvidados() {
-            for (convidado of convidados) {
+
+            elementoLista.innerHTML = ""
+
+            for (const convidado of convidados) {
                 var elementoConvidado = document.createElement('li')
                 var elementoNome = document.createTextNode(convidado.nome)
 
+                var elementoExcluir = document.createElement("a")
+                elementoExcluir.setAttribute("href", "#")
+
+                elementoExcluir.onclick = function () {
+                    // Usando O metodo FILTER
+
+                    convidados = convidados.filter(function (item) {
+                        //Retorna todos os nomes menos o nome que foi clicado!
+                        return item.nome !== convidado.nome
+
+                    })
+
+                    listarConvidados()
+
+                }
+                var elementoExcluirTexto = document.createTextNode(" Excluir")
+
+                elementoExcluir.appendChild(elementoExcluirTexto)
                 elementoConvidado.appendChild(elementoNome)
+                elementoConvidado.appendChild(elementoExcluir)
                 elementoLista.appendChild(elementoConvidado)
             }
         }
@@ -52,7 +74,6 @@
 
 
         var adicionarConvidado = function () {
-            elementoLista.innerHTML = ""
 
             var nome = elementoCampo.value
             convidados.push({ nome: nome })
