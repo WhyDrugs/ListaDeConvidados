@@ -33,11 +33,12 @@
         var campo = document.getElementById("campo")
         var botao = document.getElementById("botao")
 
-        var convidados = [
-            { nome: 'Bruno de Souza' },
-            { nome: 'Maiko Douglas' },
-            { nome: 'Flavin do zap' }
-        ]
+        var convidados = JSON.parse(localStorage.getItem("convidados")) || []
+
+
+        function salvarConvidados() {
+            localStorage.setItem("convidados", JSON.stringify(convidados))
+        }
 
         function listarConvidados() {
 
