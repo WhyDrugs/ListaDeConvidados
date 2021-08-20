@@ -28,28 +28,39 @@
         //document.getElementsByClass('tal');
         //document.getElementById('#tal');
         //document.querySelector('#app ul');
-        
+
         var lista = document.getElementById("lista")
         var campo = document.getElementById("campo")
         var botao = document.getElementById("botao")
 
         var convidados = [
-            {id: 1, nome: 'Bruno de Souza', idade: 28},
-            {id: 2, nome: 'Maiko Douglas', idade: 18},
-            {id: 3, nome: 'Flavin do zap', idade: 38}
+            { nome: 'Bruno de Souza' },
+            { nome: 'Maiko Douglas' },
+            { nome: 'Flavin do zap' }
         ]
 
-        for (convidado of convidados){
-            var elementoConvidado = document.createElement('li')
-            var elementoNome = document.createTextNode(convidado.nome)
+        function listarConvidados() {
+            for (convidado of convidados) {
+                var elementoConvidado = document.createElement('li')
+                var elementoNome = document.createTextNode(convidado.nome)
 
-            elementoConvidado.appendChild(elementoNome)
-            elementoLista.appendChild(elementoConvidado)
+                elementoConvidado.appendChild(elementoNome)
+                elementoLista.appendChild(elementoConvidado)
+            }
+        }
+        listarConvidados()
 
 
+        var adicionarConvidado = function () {
+            elementoLista.innerHTML = ""
+
+            var nome = elementoCampo.value
+            convidados.push({ nome: nome })
+            elementoCampo.value = " "
+            listarConvidados()
         }
 
-
+        elementoBotao.onclick = adicionarConvidado
 
     </script>
 </body>
